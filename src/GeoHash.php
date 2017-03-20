@@ -24,7 +24,7 @@ class GeoHash
         string $unit = 'K'
     ) {
         $theta = $lon1 - $lon2;
-        $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+        $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
         $dist = acos($dist);
         $dist = rad2deg($dist);
         $miles = $dist * 60 * 1.1515;
@@ -57,7 +57,7 @@ class GeoHash
         $x_quotient = $squares / 2;
         $y_quotient = $x_quotient / 2;
 
-        if (0 !== $remainder ) {
+        if (0 !== $remainder) {
             throw new \Exception('geoHash divisions must be multiple of 2');
         }
 
@@ -120,7 +120,7 @@ class GeoHash
 
         $y_precision = 12;
         foreach ($height_precision as $key => $value) {
-            if ($height> $value) {
+            if ($height > $value) {
                 $y_precision = $key;
                 break;
             }
