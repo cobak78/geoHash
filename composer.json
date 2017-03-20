@@ -1,0 +1,30 @@
+{
+    "name": "cobak78/geohash",
+    "description": "A geohash class to get some geohash results",
+    "keywords": ["Geohash", "Maps"],
+    "homepage": "https://github.com/cobak78/geo-hash",
+    "license": "GNU",
+    "authors": [
+        {
+            "name": "Jaime Merino",
+            "email": "cobak78@gmail.com",
+            "homepage": "https://github.com/cobak78"
+        }
+    ],
+    "require": {
+        "php": ">=7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": ">=4.8 < 6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cobak78\\GeoHash\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Cobak78\\GeoHash\\Tests\\": "tests/"
+        }
+    }
+}

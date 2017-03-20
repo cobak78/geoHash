@@ -1,2 +1,2 @@
 # geohash
-A geohash library to get some util data
+A geohash library to get some usefull data
