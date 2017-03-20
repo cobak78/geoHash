@@ -77,52 +77,27 @@ class GeoHash
     private function getPrecisionFromArea($width, $height)
     {
         // return
-        $widthPrecision = [
-            1 => 5009400,
-            2 => 1252300,
-            3 => 156500,
-            4 => 39100,
-            5 => 4900,
-            6 => 1200,
-            7 => 152.9,
-            8 => 38.2,
-            9 => 4.8,
-            10 => 1.2,
-            11 => 0.14,
-            12 => 0.037,
+        $precisionMap = [
+            1 => [5009400, 4992000.6],
+            2 => [1252300, 624100],
+            3 => [156500, 156000],
+            4 => [39100, 19500],
+            5 => [4900, 4900],
+            6 => [1200, 609.4],
+            7 => [152.9, 152.4],
+            8 => [38.2, 19],
+            9 => [4.8, 4.8],
+            10 => [1.2, 0.595],
+            11 => [0.14, 0.149],
+            12 => [0.037, 0.019]
         ];
 
-        $heightPrecision = [
-            1 => 4992000.6,
-            2 => 624100,
-            3 => 156000,
-            4 => 19500,
-            5 => 4900,
-            6 => 609.4,
-            7 => 152.4,
-            8 => 19,
-            9 => 4.8,
-            10 => 0.595,
-            11 => 0.149,
-            12 => 0.019,
-        ];
-
-        $xPrecision = 12;
-        foreach ($widthPrecision as $key => $value) {
-            if ($width > $value) {
-                $xPrecision = $key;
-                break;
+        foreach ($precisionMap as $key => $value) {
+            if ($width > $value[0] || $height > $value[1]) {
+                return $key;
             }
         }
 
-        $yPrecision = 12;
-        foreach ($heightPrecision as $key => $value) {
-            if ($height > $value) {
-                $yPrecision = $key;
-                break;
-            }
-        }
-
-        return min($xPrecision, $yPrecision);
+        return 12;
     }
 }
