@@ -1,15 +1,12 @@
 filter:
     excluded_paths:
-        - 'tests/*'
-checks:
-    php: true
-coding_style:
-    php: {  }
+        - tests/*
+
 build:
     tests:
         override:
             -
-                command: 'wget https://phar.phpunit.de/phpunit-4.8.26.phar && php phpunit-4.8.26.phar'
+                command: 'vendor/bin/phpunit --coverage-clover=some-file'
                 coverage:
-                    file: 'build/logs/clover.xml'
+                    file: 'some-file'
                     format: 'clover'
