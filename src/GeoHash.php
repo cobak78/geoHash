@@ -9,11 +9,11 @@ namespace Cobak78\GeoHash;
 class GeoHash
 {
     /**
-     * @param float $lat1
-     * @param float $lon1
-     * @param float $lat2
-     * @param float $lon2
-     * @param string $unit
+     * @param  float  $lat1
+     * @param  float  $lon1
+     * @param  float  $lat2
+     * @param  float  $lon2
+     * @param  string $unit
      * @return float
      */
     public function distance(
@@ -29,8 +29,7 @@ class GeoHash
         $dist = rad2deg($dist);
         $miles = $dist * 60 * 1.1515;
 
-        switch (strtoupper($unit))
-        {
+        switch (strtoupper($unit)) {
             case "K":
             case "KM":
                 return ($miles * 1.609344);
@@ -43,44 +42,42 @@ class GeoHash
     }
 
     /**
-     * geoBoundBox:
-     *  [ top_left => [ lat => x, lon => y ], bottom_right => [ lat => x, lon => y ]
+     * geoBoundBox: [ top_left => [ lat => x, lon => y ], bottom_right => [ lat => x, lon => y ]
      *
-     * @param array $geoBoundBox
-     * @param int $squares
+     * @param  array      $geoBoundBox
+     * @param  int        $squares
      * @return mixed
      * @throws \Exception
      */
     public function getGeoHashPrecision(array $geoBoundBox, int $squares)
     {
         $remainder = $squares % 2;
-        $x_quotient = $squares / 2;
-        $y_quotient = $x_quotient / 2;
+        $xQuotient = $squares / 2;
+        $yQuotient = $xQuotient / 2;
 
         if (0 !== $remainder) {
             throw new \Exception('geoHash divisions must be multiple of 2');
         }
 
         // get x distance
-        $x_dist = $this->distance($geoBoundBox['top_left']['lat'], $geoBoundBox['top_left']['lon'], $geoBoundBox['bottom_right']['lat'], $geoBoundBox['top_left']['lon']);
-        $x_dist = $x_dist * 1000;
+        $xDist = $this->distance($geoBoundBox['top_left']['lat'], $geoBoundBox['top_left']['lon'], $geoBoundBox['bottom_right']['lat'], $geoBoundBox['top_left']['lon']);
+        $xDist = $xDist * 1000;
         // get y distance
-        $y_dist = $this->distance($geoBoundBox['top_left']['lat'], $geoBoundBox['top_left']['lon'], $geoBoundBox['top_left']['lat'], $geoBoundBox['bottom_right']['lon']);
-        $y_dist = $y_dist * 1000;
+        $yDist = $this->distance($geoBoundBox['top_left']['lat'], $geoBoundBox['top_left']['lon'], $geoBoundBox['top_left']['lat'], $geoBoundBox['bottom_right']['lon']);
+        $yDist = $yDist * 1000;
 
         // geohash distances
-        $x_geohash_dist = $x_dist / $x_quotient;
-        $y_geohash_dist = $y_dist / $y_quotient;
+        $xGeohashDist = $xDist / $xQuotient;
+        $yGeohashDist = $yDist / $yQuotient;
 
-        return $this->getPrecisionFromArea($x_geohash_dist, $y_geohash_dist);
-
+        return $this->getPrecisionFromArea($xGeohashDist, $yGeohashDist);
 
     }
 
     private function getPrecisionFromArea($width, $height)
     {
         // return
-        $width_precision = [
+        $widthPrecision = [
             1 => 5009400,
             2 => 1252300,
             3 => 156500,
@@ -95,7 +92,7 @@ class GeoHash
             12 => 0.037,
         ];
 
-        $height_precision = [
+        $heightPrecision = [
             1 => 4992000.6,
             2 => 624100,
             3 => 156000,
@@ -110,22 +107,22 @@ class GeoHash
             12 => 0.019,
         ];
 
-        $x_precision = 12;
-        foreach ($width_precision as $key => $value) {
+        $xPrecision = 12;
+        foreach ($widthPrecision as $key => $value) {
             if ($width > $value) {
-                $x_precision = $key;
+                $xPrecision = $key;
                 break;
             }
         }
 
-        $y_precision = 12;
-        foreach ($height_precision as $key => $value) {
+        $yPrecision = 12;
+        foreach ($heightPrecision as $key => $value) {
             if ($height > $value) {
-                $y_precision = $key;
+                $yPrecision = $key;
                 break;
             }
         }
 
-        return min($x_precision, $y_precision);
+        return min($xPrecision, $yPrecision);
     }
 }
