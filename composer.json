@@ -1,6 +1,6 @@
 {
     "name": "cobak78/geohash",
-    "description": "A geohash class to get some geohash results",
+    "description": "A geohash class to get some interesting data",
     "keywords": ["Geohash", "Maps"],
     "homepage": "https://github.com/cobak78/geo-hash",
     "license": "GNU",
