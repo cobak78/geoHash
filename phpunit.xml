@@ -15,13 +15,8 @@
     </logging>
 
     <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">src</directory>
+        <whitelist>
             <file>src</file>
-            <exclude>
-                <directory suffix=".php">tests</directory>
-                <file>tests</file>
-            </exclude>
         </whitelist>
     </filter>
 </phpunit>
