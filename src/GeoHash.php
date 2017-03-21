@@ -56,7 +56,7 @@ class GeoHash
         $yQuotient = $xQuotient / 2;
 
         if (0 !== $remainder) {
-            throw new \Exception('geoHash divisions must be multiple of 2');
+            throw new \InvalidArgumentException('geoHash divisions must be multiple of 2');
         }
 
         // get x distance

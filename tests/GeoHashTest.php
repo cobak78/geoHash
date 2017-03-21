@@ -15,7 +15,10 @@ class GeoHashTest extends \PHPUnit_Framework_TestCase
         BOTTOM_RIGHT = ['lat' => 41.3326176, 'lon' => 2.0693494],
         OPEN_TOP_LEFT = ['lat' => 45.5926176, 'lon' => 2.5693494],
         OPEN_BOTTOM_RIGHT = ['lat' => 35.3326176, 'lon' => 1.5693494],
+        CLOSE_TOP_LEFT = ['lat' => 45.5926176, 'lon' => 2.5693494],
+        CLOSE_BOTTOM_RIGHT = ['lat' => 45.5926176, 'lon' => 2.5693494],
         SQUARES = 4,
+        INVALID_SQUARES = 5,
         KM_DISTANCE = 30.086138600645093,
         KM_DISTANCE_OPEN = 1143.9106866432,
         MILES_DISTANCE = 18.694659812101,
@@ -77,6 +80,16 @@ class GeoHashTest extends \PHPUnit_Framework_TestCase
         $result = $this->geoClass->getGeoHashPrecision(['top_left' => static::OPEN_TOP_LEFT, 'bottom_right' => static::OPEN_BOTTOM_RIGHT], static::SQUARES);
 
         $this->assertEquals(3, $result);
+    }
 
+    public function testExceptions()
+    {
+        $this->setExpectedException(\InvalidArgumentException::class);
+
+        $result = $this->geoClass->getGeoHashPrecision(['top_left' => static::TOP_LEFT, 'bottom_right' => static::BOTTOM_RIGHT], static::INVALID_SQUARES);
+
+        $result = $this->geoClass->getGeoHashPrecision(['top_left' => static::CLOSE_TOP_LEFT, 'bottom_right' => static::CLOSE_BOTTOM_RIGHT], static::SQUARES);
+
+        $this->assertEquals(12, $result);
     }
 }
