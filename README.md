@@ -1,7 +1,7 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/cobak78/geohash/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/cobak78/geohash/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/cobak78/geohash/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/cobak78/geohash/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/cobak78/geohash/badges/build.png?b=master)](https://scrutinizer-ci.com/g/cobak78/geohash/build-status/master)
-[![Code climate](https://codeclimate.com/github/cobak78/geohash)](https://codeclimate.com/github/cobak78/geohash)
+[![Code Climate](https://codeclimate.com/github/cobak78/geohash/badges/gpa.svg)](https://codeclimate.com/github/cobak78/geohash)
 
 # geohash
 
