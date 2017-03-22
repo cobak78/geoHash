@@ -4,7 +4,6 @@
     "description": "A geohash class to get some interesting data",
     "keywords": ["Geohash", "Maps"],
     "homepage": "https://github.com/cobak78/geohash",
-    "version": "0.1.1",
     "license": "GNU",
     "authors": [
         {
