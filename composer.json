@@ -3,7 +3,7 @@
     "type": "library",
     "description": "A geohash class to get some interesting data",
     "keywords": ["Geohash", "Maps"],
-    "homepage": "https://github.com/cobak78/geo-hash",
+    "homepage": "https://github.com/cobak78/geohash",
     "license": "GNU",
     "authors": [
         {
